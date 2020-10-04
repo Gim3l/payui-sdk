@@ -8,14 +8,25 @@
 	<title>Svelte app</title>
 
 	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link rel='stylesheet' href='/global.css'>
+	<link rel='stylesheet' href='./global.css'>
 	<link rel='stylesheet' href='/build/bundle.css'>
 
-	<script defer src='/build/bundle.js'></script>
+	<script defer src='./build/bundle.js'></script>
 </head>
 
 <body>
+	<p>Hello</p>
 	<payui-sdk width='150' height='150'></payui-sdk>
+
+	<script>
+		window.addEventListener('load', () => {
+			const sdk = document.querySelector('payui-sdk');
+			sdk.addEventListener('complete', function () {
+				alert('We\'re done!')
+			})
+			sdk.$on('complete', function (data) { console.log('WOO!', data) })
+		});
+	</script>
 </body>
 
 </html>
